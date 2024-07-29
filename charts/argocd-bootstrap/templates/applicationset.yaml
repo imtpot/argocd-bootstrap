@@ -32,7 +32,7 @@ spec:
   templatePatch: |
     spec:
       sources:
-        - repoURL: {{ if $appset.repo_url }}{{ $appset.repo_url }}{{ else }}{{`{{ dig "source" "repoURL" "HEAD" . }}`}}{{ end }}
+        - repoURL: {{`{{ dig "source" "repoURL" "` }}{{ $appset.repo_url }}{{`" . }}`}}
           targetRevision: {{ if $appset.revision }}{{ $appset.revision }}{{ else }}{{`{{ dig "source" "targetRevision" "HEAD" . }}`}}{{ end }}
           {{`{{- if (dig "source" "chart" "" .) }}`}}
           chart: {{`{{ dig "source" "chart" "" . }}`}}
