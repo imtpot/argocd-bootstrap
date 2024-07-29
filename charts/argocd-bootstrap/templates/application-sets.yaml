@@ -10,8 +10,8 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
-        repoURL: "{{ .Values.applications_repo.url }}"
-        revision: "{{ .Values.applications_repo.revision }}"
+        repoURL: "{{ $appset.url }}"
+        revision: "{{ $appset.revision }}"
         files:
           - path: "{{ $appset.name }}/**/app-config.yaml"
   template:
