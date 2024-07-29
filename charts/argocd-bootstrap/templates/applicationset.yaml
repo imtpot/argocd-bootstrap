@@ -1,4 +1,5 @@
 {{- range $appset := .Values.appsets }}
+{{- $revision := $appset.revision | default "HEAD" }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
@@ -11,7 +12,7 @@ spec:
   generators:
     - git:
         repoURL: "{{ $appset.repo_url }}"
-        revision: "{{ $appset.revision }}"
+        revision: "{{ $revision }}"
         files:
           - path: "**/app-config.yaml"
   template:
@@ -33,10 +34,10 @@ spec:
     spec:
       sources:
         - repoURL: {{`{{ dig "source" "repoURL" "` }}{{ $appset.repo_url }}{{`" . }}`}}
-          targetRevision: {{ if $appset.revision }}{{ $appset.revision }}{{ else }}{{`{{ dig "source" "targetRevision" "HEAD" . }}`}}{{ end }}
+          targetRevision: {{`{{ dig "source" "targetRevision" "` }}{{ $revision }}{{`" . }}`}}
           {{`{{- if (dig "source" "chart" "" .) }}`}}
           chart: {{`{{ dig "source" "chart" "" . }}`}}
-          {{`{{- else if (dig "source" "path" "" .) }}`}}
-          path: {{`{{ dig "source" "path" "" . }}`}}
+          {{`{{- else }}`}}
+          path: {{`{{ dig "source" "path" .path . }}`}}
           {{`{{- end }}`}}
 {{- end }}
