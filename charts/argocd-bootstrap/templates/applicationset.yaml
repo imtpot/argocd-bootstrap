@@ -13,7 +13,7 @@ spec:
         repoURL: "{{ $appset.repo_url }}"
         revision: "{{ $appset.revision }}"
         files:
-          - path: "{{ $appset.name }}/**/app-config.yaml"
+          - path: "**/app-config.yaml"
   template:
     metadata:
       name: "{{`{{ .name }}`}}"
