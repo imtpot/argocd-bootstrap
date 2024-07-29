@@ -11,7 +11,7 @@ spec:
   generators:
     - git:
         repoURL: "{{ $appset.repo_url }}"
-        revision: "{{ $appset.repo_revision }}"
+        revision: "{{ $appset.revision }}"
         files:
           - path: "{{ $appset.name }}/**/app-config.yaml"
   template:
@@ -32,7 +32,7 @@ spec:
   templatePatch: |
     spec:
       sources:
-        - repoURL: {{ default $appset.url `{{ .source.repoURL }}` }}
+        - repoURL: {{ default $appset.repo_url `{{ .source.repoURL }}` }}
           targetRevision: {{ default $appset.revision `{{ .source.targetRevision }}` }}
           {{`{{- if hasKey .source "chart" }}`}}
           chart: {{`{{ .source.chart }}`}}
