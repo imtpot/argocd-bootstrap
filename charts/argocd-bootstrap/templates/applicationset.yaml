@@ -38,6 +38,5 @@ spec:
           chart: {{`{{ dig "source" "chart" "" . }}`}}
           {{`{{- else if (dig "source" "path" "" .) }}`}}
           path: {{`{{ dig "source" "path" "" . }}`}}
-          {{`{{- end }}`}}`}}
-      {{`{{- end }}`}}
+          {{`{{- end }}`}}
 {{- end }}
