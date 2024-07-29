@@ -1,8 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root
+  name: argocd-bootstrap
   namespace: argocd
+  annotaitons:
+    argocd.argoproj.io/sync-options: Delete=false
 spec:
   project: default
   source:
@@ -17,5 +19,4 @@ spec:
       - CreateNamespace=true
       - AllowEmpty=true
     automated:
-      prune: true
       selfHeal: true

@@ -1,0 +1,9 @@
+repositories:
+  - name: argocd-bootstrap
+    url: https://github.com/imtpot/argocd-bootstrap
+
+releases:
+  - name: argocd-bootstrap
+    namespace: argocd
+    chart: argocd-bootstrap
+    version: main
