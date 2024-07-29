@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "{{ .Values.bootstrap.repoURL }}"
+    repoURL: "{{ .Values.bootstrap.repoURL }}".git
     targetRevision: "{{ .Values.bootstrap.targetRevision }}"
     path: charts/argocd-bootstrap/
   destination:
