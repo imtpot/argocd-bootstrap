@@ -1,3 +1,11 @@
 bootstrap:
-  repoURL: https://github.com/imtpot/argocd-bootstrap
-  targetRevision: main
+  repo_url: https://github.com/imtpot/argocd-bootstrap
+  revision: HEAD
+
+application_sets:
+  - name: infrastructure
+    repo_url: https://github.com/imtpot/argocd-infrastructure
+    revision: HEAD
+  - name: applications
+    repo_url: https://github.com/imtpot/argocd-applications
+    revision: HEAD

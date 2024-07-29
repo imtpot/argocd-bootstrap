@@ -8,8 +8,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: "{{ .Values.bootstrap.repoURL }}.git"
-    targetRevision: "{{ .Values.bootstrap.targetRevision }}"
+    repoURL: "{{ .Values.bootstrap.repo_url }}.git"
+    targetRevision: "{{ .Values.bootstrap.revision }}"
     path: charts/argocd-bootstrap/
   destination:
     server: https://kubernetes.default.svc
