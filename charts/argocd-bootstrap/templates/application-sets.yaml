@@ -11,7 +11,7 @@ spec:
   generators:
     - git:
         repoURL: "{{ $appset.url }}"
-        revision: "{{ $appset.revision }}"
+        revision: "{{ default HEAD $appset.revision }}"
         files:
           - path: "{{ $appset.name }}/**/app-config.yaml"
   template:
