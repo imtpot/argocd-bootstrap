@@ -1,4 +1,4 @@
-{{- range $index, $appset := .Values.application_set }}
+{{- range $index, $appset := .Values.application_sets }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
