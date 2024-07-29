@@ -33,7 +33,7 @@ spec:
     spec:
       sources:
         - repoURL: {{ if $appset.repo_url }}{{ $appset.repo_url }}{{ else }}{{`{{ default "HEAD" .source.repoURL }}`}}{{ end }}
-          targetRevision: {{ default $appset.revision `{{ .source.targetRevision }}` }}
+          targetRevision: {{ if $appset.revision }}{{ $appset.revision }}{{ else }}{{`{{ default "HEAD" .source.targetRevision }}`}}{{ end }}
           {{`{{- if hasKey .source "chart" }}`}}
           chart: {{`{{ .source.chart }}`}}
           {{`{{- else if hasKey .source "path" }}`}}
