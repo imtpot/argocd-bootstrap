@@ -40,7 +40,7 @@ spec:
           {{`{{- else }}`}}
           path: {{`{{ dig "source" "path" .path.basename . }}`}}
           {{`{{- end }}`}}
-          {{`{{- if dig "values" "" }}`}}
+          {{`{{- if dig "." "values" "" }}`}}
           helm:
             valuesObject: {{`{{ toJson .values }}`}}
           {{`{{- end }}`}}
