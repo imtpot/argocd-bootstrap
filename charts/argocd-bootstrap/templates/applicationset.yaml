@@ -48,7 +48,7 @@ spec:
           helm:
             valueFiles:
               {{`{{- range $valueFile := .values_files }}`}}
-              - $values/{{`{{ .path }}`}}/{{`{{ $valueFile }}`}}
+              - $values/{{`{{ $valueFile }}`}}
               {{`{{- end }}`}}
           {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
