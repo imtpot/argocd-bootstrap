@@ -41,17 +41,10 @@ spec:
           path: {{`{{ dig "source" "path" .path.basename . }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "value_files" }}`}}
-          {{`{{- if hasKey . "vault" }}`}}
-          plugin:
-            name: lovely-vault-plugin
-            env:
-              - name: ARGOCD_ENV_LOVELY_HELM_VALUES
-                value: $values/{{`{{ .path.path }}`}}/{{`{{ .value_files }}`}}
           {{`{{- else }}`}}
           helm:
             valueFiles:
               - $values/{{`{{ .path.path }}`}}/{{`{{ .value_files }}`}}
-          {{`{{- end }}`}}
           {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
