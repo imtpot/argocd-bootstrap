@@ -56,5 +56,4 @@ spec:
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           ref: values
-          {{`{{- end }}`}}
 {{- end }}
