@@ -52,12 +52,5 @@ spec:
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           ref: values
-        {{- if default false .addons.enabled }}
-        - repoURL: {{ $appset.repo_url }}
-          targetRevision: {{ $revision }}
-          parh: {{ .path.path }}/addons
-          {{- if addons.vault }}
-          plugin:
-            name: lovely-vault-plugin
-          {{- end }}
+
 {{- end }}
