@@ -32,20 +32,16 @@ spec:
           selfHeal: true
   templatePatch: |
     spec:
-      sources:
-        - repoURL: {{`{{ dig "source" "repoURL" "` }}{{ $appset.repo_url }}{{`" . }}`}}
-          targetRevision: {{`{{ dig "source" "targetRevision" "` }}{{ $revision }}{{`" . }}`}}
-          {{`{{- if (dig "source" "chart" "" .) }}`}}
-          chart: {{`{{ dig "source" "chart" "" . }}`}}
-          {{`{{- else }}`}}
-          path: {{`{{ dig "source" "path" .path.basename . }}`}}
-          {{`{{- end }}`}}
-          {{`{{- if hasKey . "value_files" }}`}}
-          helm:
-            valueFiles:
-              - $values/{{`{{ .path.path }}`}}/{{`{{ .value_files }}`}}
-          {{`{{- end }}`}}
-        - repoURL: {{ $appset.repo_url }}
-          targetRevision: {{ $revision }}
-          ref: values
+      source:
+        repoURL: {{`{{ dig "source" "repoURL" "` }}{{ $appset.repo_url }}{{`" . }}`}}
+        targetRevision: {{`{{ dig "source" "targetRevision" "` }}{{ $revision }}{{`" . }}`}}
+        {{`{{- if (dig "source" "chart" "" .) }}`}}
+        chart: {{`{{ dig "source" "chart" "" . }}`}}
+        {{`{{- else }}`}}
+        path: {{`{{ dig "source" "path" .path.basename . }}`}}
+        {{`{{- end }}`}}
+        {{`{{- if hasKey . "values" }}`}}
+        helm:
+          valuesObject: {{`{{ toJson .values }}`}}
+        {{`{{- end }}`}}
 {{- end }}
