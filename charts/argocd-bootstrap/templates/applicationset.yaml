@@ -53,4 +53,5 @@ spec:
           {{`{{- if eq "vault" true }}`}}
           plugin:
             name: lovely-vault-plugin
+          {{`{{- end }}`}}
 {{- end }}
