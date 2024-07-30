@@ -45,9 +45,10 @@ spec:
             valuesObject: {{`{{ toJson .values }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "values_files" }}`}}
+          {{`{{- range $vfile .values_files }}`}}
           helm:
             valueFiles:
-              - $values/{{`{{ .path.path }}`}}/{{`{{ .values_files }}`}}
+              - $values/{{`{{ .path.path }}`}}/{{`{{ $vfile }}`}}
           {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
