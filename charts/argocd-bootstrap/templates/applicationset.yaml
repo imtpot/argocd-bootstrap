@@ -52,5 +52,4 @@ spec:
           ref: values
           plugin:
             name: lovely-vault-plugin
-        {{`{{- end }}`}}
 {{- end }}
