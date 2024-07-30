@@ -49,6 +49,7 @@ spec:
             valueFiles:
               - $values/{{`{{ .path.path }}`}}/{{`{{ .values_file }}`}}
           {{`{{- end }}`}}
+          {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           ref: values
