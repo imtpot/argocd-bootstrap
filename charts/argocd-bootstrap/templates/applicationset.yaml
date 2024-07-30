@@ -61,4 +61,7 @@ spec:
             name: lovely-vault-plugin
           {{`{{- end }}`}}
         {{`{{- end }}`}}
+      {{`{{- if hasKey . "ignoreDifferences" }}`}}
+      ignoreDifferences: {{`{{ toJson .ignoreDifferences }}`}}
+      {{`{{- end }}`}}
 {{- end }}
