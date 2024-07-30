@@ -45,6 +45,7 @@ spec:
             valuesObject: {{`{{ toJson .values }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "values_files" }}`}}
+          helm:
             valueFiles:
               - $values/{{`{{ .path.path }}`}}/{{`{{ .values_files }}`}}
           {{`{{- end }}`}}
