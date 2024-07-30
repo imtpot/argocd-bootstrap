@@ -59,5 +59,6 @@ spec:
           {{`{{- if hasKey .addons "vault" }}`}}
           plugin:
             name: lovely-vault-plugin
+          {{`{{- end }}`}}
         {{`{{- end }}`}}
 {{- end }}
