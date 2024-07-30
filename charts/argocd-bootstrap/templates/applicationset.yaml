@@ -30,40 +30,40 @@ spec:
           - CreateNamespace=true
         automated:
           selfHeal: true
-templatePatch: |
-        spec:
-          sources:
-          - repoURL: {{`{{ coalesce .source.repoURL "` }}{{ $appset.repo_url }}{{`" }}`}}
-            targetRevision: {{`{{ coalesce .source.targetRevision "` }}{{ $revision }}{{`" }}`}}
-            {{`{{- if .source.chart }}`}}
-            chart: {{`{{ .source.chart }}`}}
-            {{`{{- else }}`}}
-            path: {{`{{ coalesce .source.path .path }}`}}
-            {{`{{- end }}`}}
-            {{`{{- if .values }}`}}
-            helm:
-              valuesObject: {{`{{ toJson .values }}`}}
-            {{`{{- end }}`}}
-            {{`{{- if .values_files }}`}}
-            helm:
-              valueFiles:
-              {{`{{- range $valueFile := .values_files }}`}}
-              - $values/{{`{{ coalesce $.path "" }}`}}/{{`{{ $valueFile }}`}}
-              {{`{{- end }}`}}
-            {{`{{- end }}`}}
-          - repoURL: {{ $appset.repo_url }}
-            targetRevision: {{ $revision }}
-            ref: values
-          {{`{{- if .addons }}`}}
-          - repoURL: {{ $appset.repo_url }}
-            targetRevision: {{ $revision }}
-            path: {{`{{ coalesce .path "" }}`}}/{{`{{ .addons.path }}`}}
-            {{`{{- if .addons.vault }}`}}
-            plugin:
-              name: lovely-vault-plugin
-            {{`{{- end }}`}}
+  templatePatch: |
+    spec:
+      sources:
+      - repoURL: {{`{{ coalesce .source.repoURL "` }}{{ $appset.repo_url }}{{`" }}`}}
+        targetRevision: {{`{{ coalesce .source.targetRevision "` }}{{ $revision }}{{`" }}`}}
+        {{`{{- if .source.chart }}`}}
+        chart: {{`{{ .source.chart }}`}}
+        {{`{{- else }}`}}
+        path: {{`{{ coalesce .source.path .path }}`}}
+        {{`{{- end }}`}}
+        {{`{{- if .values }}`}}
+        helm:
+          valuesObject: {{`{{ toJson .values }}`}}
+        {{`{{- end }}`}}
+        {{`{{- if .values_files }}`}}
+        helm:
+          valueFiles:
+          {{`{{- range $valueFile := .values_files }}`}}
+          - $values/{{`{{ coalesce $.path "" }}`}}/{{`{{ $valueFile }}`}}
           {{`{{- end }}`}}
-          {{`{{- if .ignoreDifferences }}`}}
-          ignoreDifferences: {{`{{ toJson .ignoreDifferences }}`}}
-          {{`{{- end }}`}}
+        {{`{{- end }}`}}
+      - repoURL: {{ $appset.repo_url }}
+        targetRevision: {{ $revision }}
+        ref: values
+      {{`{{- if .addons }}`}}
+      - repoURL: {{ $appset.repo_url }}
+        targetRevision: {{ $revision }}
+        path: {{`{{ coalesce .path "" }}`}}/{{`{{ .addons.path }}`}}
+        {{`{{- if .addons.vault }}`}}
+        plugin:
+          name: lovely-vault-plugin
+        {{`{{- end }}`}}
+      {{`{{- end }}`}}
+      {{`{{- if .ignoreDifferences }}`}}
+      ignoreDifferences: {{`{{ toJson .ignoreDifferences }}`}}
+      {{`{{- end }}`}}
 {{- end }}
