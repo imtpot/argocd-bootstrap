@@ -33,37 +33,37 @@ spec:
   templatePatch: |
     spec:
       sources:
-      - repoURL: {{`{{ coalesce .source.repoURL "` }}{{ $appset.repo_url }}{{`" }}`}}
-        targetRevision: {{`{{ coalesce .source.targetRevision "` }}{{ $revision }}{{`" }}`}}
-        {{`{{- if .source.chart }}`}}
-        chart: {{`{{ .source.chart }}`}}
-        {{`{{- else }}`}}
-        path: {{`{{ coalesce .source.path .path }}`}}
-        {{`{{- end }}`}}
-        {{`{{- if .values }}`}}
-        helm:
-          valuesObject: {{`{{ toJson .values }}`}}
-        {{`{{- end }}`}}
-        {{`{{- if .values_files }}`}}
-        helm:
-          valueFiles:
-          {{`{{- range $valueFile := .values_files }}`}}
-          - $values/{{`{{ coalesce $.path "" }}`}}/{{`{{ $valueFile }}`}}
+        - repoURL: {{`{{ dig "source" "repoURL" "` }}{{ $appset.repo_url }}{{`" . }}`}}
+          targetRevision: {{`{{ dig "source" "targetRevision" "` }}{{ $revision }}{{`" . }}`}}
+          {{`{{- if (dig "source" "chart" "" .) }}`}}
+          chart: {{`{{ dig "source" "chart" "" . }}`}}
+          {{`{{- else }}`}}
+          path: {{`{{ dig "source" "path" .path.basename . }}`}}
+          {{`{{- end }}`}}
+          {{`{{- if hasKey . "values" }}`}}
+          helm:
+            valuesObject: {{`{{ toJson .values }}`}}
+          {{`{{- end }}`}}
+          {{`{{- if hasKey . "values_files" }}`}}
+          helm:
+            valueFiles:
+              {{`{{- range $valueFile := .values_files }}`}}
+              - $values/{{`{{ .path }}`}}/{{`{{ $valueFile }}`}}
+              {{`{{- end }}`}}
+          {{`{{- end }}`}}
+        - repoURL: {{ $appset.repo_url }}
+          targetRevision: {{ $revision }}
+          ref: values
+        {{`{{- if hasKey . "addons" }}`}}
+        - repoURL: {{ $appset.repo_url }}
+          targetRevision: {{ $revision }}
+          path: {{`{{ .path.path }}`}}/{{`{{ .addons.path }}`}}
+          {{`{{- if hasKey .addons "vault" }}`}}
+          plugin:
+            name: lovely-vault-plugin
           {{`{{- end }}`}}
         {{`{{- end }}`}}
-      - repoURL: {{ $appset.repo_url }}
-        targetRevision: {{ $revision }}
-        ref: values
-      {{`{{- if .addons }}`}}
-      - repoURL: {{ $appset.repo_url }}
-        targetRevision: {{ $revision }}
-        path: {{`{{ coalesce .path "" }}`}}/{{`{{ .addons.path }}`}}
-        {{`{{- if .addons.vault }}`}}
-        plugin:
-          name: lovely-vault-plugin
-        {{`{{- end }}`}}
-      {{`{{- end }}`}}
-      {{`{{- if .ignoreDifferences }}`}}
+      {{`{{- if hasKey . "ignoreDifferences" }}`}}
       ignoreDifferences: {{`{{ toJson .ignoreDifferences }}`}}
       {{`{{- end }}`}}
 {{- end }}
