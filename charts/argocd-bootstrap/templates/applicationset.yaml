@@ -41,6 +41,7 @@ spec:
           path: {{`{{ dig "source" "path" .path.basename . }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "value_files" }}`}}
+          {{`{{- if hasKey . "vault" }}`}}
           plugin:
             name: lovely-vault-plugin
             env:
