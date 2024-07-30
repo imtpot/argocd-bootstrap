@@ -56,4 +56,5 @@ spec:
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           path: {{`{{ .path.path }}`}}/addons
+        {{`{{- end }}`}}
 {{- end }}
