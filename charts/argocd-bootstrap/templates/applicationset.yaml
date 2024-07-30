@@ -47,9 +47,8 @@ spec:
               - name: LOVELY_HELM_VALUES
                 value: $values/{{`{{ .path.path }}`}}/{{`{{ .values_file }}`}}
           {{`{{- end }}`}}
-        {{`{{- if hasKey . "values_file" }}`}}
-        - repoURL: {{`{{ $appset.repo_url }}`}}
-          targetRevision: {{`{{ $revision }}`}}
+        - repoURL: {{ $appset.repo_url }}
+          targetRevision: {{ $revision }}
           ref: values
         {{`{{- end }}`}}
 {{- end }}
