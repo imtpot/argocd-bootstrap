@@ -50,5 +50,7 @@ spec:
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           ref: values
+          plugin:
+            name: lovely-vault-plugin
         {{`{{- end }}`}}
 {{- end }}
