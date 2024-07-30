@@ -45,9 +45,8 @@ spec:
             valuesObject: {{`{{ toJson .values }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "values_files" }}`}}
-          {{`{{- range $values_file := .values_files }}`}}
             valueFiles:
-              - $values/{{`{{ .path.path }}`}}/{{`{{ $values_file }}`}}
+              - $values/{{`{{ .path.path }}`}}/{{`{{ .values_files }}`}}
           {{`{{- end }}`}}
           {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
