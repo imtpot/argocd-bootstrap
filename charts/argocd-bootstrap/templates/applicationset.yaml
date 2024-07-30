@@ -47,9 +47,9 @@ spec:
           {{`{{- if hasKey . "values_files" }}`}}
           helm:
             valueFiles:
-              {{`{{- range $valueFile := .values_files }}`}}
-              - $values/{{`{{ .path.path }}`}}/{{`{{ $valueFile }}`}}
-              {{`{{- end }}`}}
+              # {{`{{- range $valueFile := .values_files }}`}}
+              - $values/{{`{{ .path.path }}`}}/{{`{{ .values_files }}`}}
+              # {{`{{- end }}`}}
           {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
