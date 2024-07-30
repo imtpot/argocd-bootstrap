@@ -45,7 +45,7 @@ spec:
           plugin:
             name: lovely-vault-plugin
             env:
-              - name: LOVELY_HELM_VALUES
+              - name: ARGOCD_ENV_LOVELY_HELM_VALUES
                 value: $values/{{`{{ .path.path }}`}}/{{`{{ .value_files }}`}}
           {{`{{- else }}`}}
           helm:
