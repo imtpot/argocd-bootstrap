@@ -41,7 +41,6 @@ spec:
           path: {{`{{ dig "source" "path" .path.basename . }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "value_files" }}`}}
-          {{`{{- else }}`}}
           helm:
             valueFiles:
               - $values/{{`{{ .path.path }}`}}/{{`{{ .value_files }}`}}
