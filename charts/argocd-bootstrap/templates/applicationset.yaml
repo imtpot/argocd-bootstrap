@@ -40,16 +40,18 @@ spec:
           {{`{{- else }}`}}
           path: {{`{{ dig "source" "path" .path.basename . }}`}}
           {{`{{- end }}`}}
-          {{`{{- if hasKey . "values" }}`}}
+          {{`{{- if or (hasKey . "values") (hasKey . "values_files") }}`}}
           helm:
+            {{`{{- if hasKey . "values" }}`}}
             valuesObject: {{`{{ toJson .values }}`}}
-          {{`{{- end }}`}}
+            {{`{{- end }}`}}
           {{`{{- if hasKey . "values_files" }}`}}
           helm:
             valueFiles:
               {{`{{- range $valueFile := .values_files }}`}}
               - $values/{{`{{ $.path.path }}`}}/{{`{{ $valueFile }}`}}
               {{`{{- end }}`}}
+          {{`{{- end }}`}}
           {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
