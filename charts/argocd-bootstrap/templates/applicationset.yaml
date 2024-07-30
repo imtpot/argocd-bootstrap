@@ -56,5 +56,8 @@ spec:
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           path: {{`{{ .path.path }}`}}/{{`{{ .addons.path }}`}}
+          {{`{{- if hasKey .addons "vault" }}`}}
+          plugin:
+            name: lovely-vault-plugin
         {{`{{- end }}`}}
 {{- end }}
