@@ -44,4 +44,5 @@ spec:
         helm:
           valuesObject: {{`{{ toJson .values }}`}}
         {{`{{- end }}`}}
+        plugins: {}
 {{- end }}
