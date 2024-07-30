@@ -41,7 +41,7 @@ spec:
           path: {{`{{ dig "source" "path" .path.basename . }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "values_file" }}`}}
-          {{`{{- if eq default false .vault true }}`}}
+          {{`{{- if hasKey . "vault" }}`}}
           plugin:
             name: lovely-vault-plugin
             env:
@@ -56,7 +56,7 @@ spec:
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           ref: values
-          {{`{{- if eq default false .vault true }}`}}
+          {{`{{- if hasKey . "vault" }}`}}
           plugin:
             name: lovely-vault-plugin
           {{`{{- end }}`}}
