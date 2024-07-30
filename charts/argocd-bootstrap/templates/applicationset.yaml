@@ -52,8 +52,8 @@ spec:
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
           ref: values
-        {{`{{- if hasKey .addons.enabled }}`}}
+        {{`{{- if hasKey . addons }}`}}
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
-          parh: {{ .path.path }}/addons
+          parh: {{`{{ .path.path }}`}}/addons
 {{- end }}
