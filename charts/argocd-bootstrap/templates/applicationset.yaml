@@ -41,9 +41,16 @@ spec:
           path: {{`{{ dig "source" "path" .path.basename . }}`}}
           {{`{{- end }}`}}
           {{`{{- if hasKey . "value_files" }}`}}
+          plugin:
+            name: lovely-vault-plugin
+            env:
+              - name: LOVELY_HELM_VALUES
+                value: $values/{{`{{ .path.path }}`}}/{{`{{ .value_files }}`}}
+          {{`{{- else }}`}}
           helm:
             valueFiles:
               - $values/{{`{{ .path.path }}`}}/{{`{{ .value_files }}`}}
+          {{`{{- end }}`}}
           {{`{{- end }}`}}
         - repoURL: {{ $appset.repo_url }}
           targetRevision: {{ $revision }}
