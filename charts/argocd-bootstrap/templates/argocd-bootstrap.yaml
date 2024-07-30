@@ -9,8 +9,6 @@ spec:
     repoURL: "{{ .Values.bootstrap.repo_url  }}"
     targetRevision: "{{ .Values.bootstrap.revision | default "HEAD" }}"
     path: charts/argocd-bootstrap/
-    plugin:
-      name: helm
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
