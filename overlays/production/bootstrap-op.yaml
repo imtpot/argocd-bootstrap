@@ -1,13 +1,3 @@
-- op: add
-  path: /spec/source/helm/valuesObject
-  value:
-    bootstrap:
-      repo_url: https://github.com/imtpot/argocd-bootstrap
-      path: overlays/production/
-    appsets:
-      - name: infrastructure
-        repo_url: https://github.com/imtpot/argocd-infrastructure
-        config_search_path: "**/app-config.yaml"
-      - name: applications
-        repo_url: https://github.com/imtpot/argocd-applications
-        config_search_path: "production/**/app-config.yaml"
+- op: replace
+  path: /spec/source/path
+  value: overlays/production/
