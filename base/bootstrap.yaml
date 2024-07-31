@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-bootstrap
+  name: bootstrap
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: "{{ .Values.bootstrap.repo_url  }}"
-    targetRevision: "{{ .Values.bootstrap.revision | default "HEAD" }}"
-    path: charts/argocd-bootstrap/
+    repoURL: https://github.com/imtpot/argocd-bootstrap
+    targetRevision: HEAD
+    path: base/
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
