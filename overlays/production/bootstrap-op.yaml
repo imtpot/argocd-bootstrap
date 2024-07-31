@@ -3,7 +3,7 @@
   value:
     bootstrap:
       repo_url: https://github.com/imtpot/argocd-bootstrap
-      path: /overlays/production/
+      path: overlays/production/
     appsets:
       - name: infrastructure
         repo_url: https://github.com/imtpot/argocd-infrastructure
