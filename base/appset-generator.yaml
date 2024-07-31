@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/imtpot/argocd-bootstrap
+    repoURL: https://github.com/imtpot/argocd-appset-generator
     targetRevision: HEAD
     path: charts/appset-generator
     helm: {}
