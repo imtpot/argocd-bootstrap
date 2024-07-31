@@ -1,3 +1,7 @@
+bootstrap:
+  repo_url: https://github.com/imtpot/argocd-bootstrap
+  path: base/
+
 appsets:
   - name: infrastructure
     repo_url: https://github.com/imtpot/argocd-infrastructure

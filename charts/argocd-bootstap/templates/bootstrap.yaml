@@ -1,15 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: appset-generator
+  name: bootstrap
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/imtpot/argocd-bootstrap
-    targetRevision: HEAD
-    path: charts/appset-generator
-    helm: {}
+    repoURL: {{ .Values.bootstrap.repo_url }}
+    targetRevision: {{ .Values.bootstrap.revision | default "HEAD" }}
+    path: {{ .Values.bootstrap.path }}
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

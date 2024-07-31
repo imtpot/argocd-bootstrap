@@ -8,7 +8,8 @@ spec:
   source:
     repoURL: https://github.com/imtpot/argocd-bootstrap
     targetRevision: HEAD
-    path: base/
+    path: charts/argocd-bootstrap/
+    helm: {}
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
