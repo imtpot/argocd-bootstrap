@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: {{ .Values.bootstrap.repo_url }}
-    targetRevision: {{ .Values.bootstrap.revision | default "HEAD" }}
-    path: {{ .Values.bootstrap.path }}
+    repoURL: https://github.com/imtpot/argocd-bootstrap
+    targetRevision: HEAD
+    path: base/
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
